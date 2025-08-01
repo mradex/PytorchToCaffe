@@ -8,10 +8,12 @@ caffe.set_mode_cpu()
 net = caffe.Net('model.prototxt', 'model.caffemodel', caffe.TEST)
 
 # Prepare input data: a single 3-element vector
-input_data = np.array([1.0, 2.0, 3.0], dtype=np.float32)
+#input_data = np.ones((1,1,2,3), dtype=np.float32)
+#input_data = np.ones((1,4,2,3), dtype=np.float32)
+#input_data = np.ones((1,16,2,3), dtype=np.float32)
+input_data = np.ones((1,17,2,3), dtype=np.float32)
 
 # Reshape input blob to batch size 1
-net.blobs['data'].reshape(1, 3)
 net.blobs['data'].data[...] = input_data
 
 # Run forward pass
