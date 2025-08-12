@@ -54,7 +54,15 @@ class TransLog(object):
         """
         :param inputs: is a list of input variables
         """
-        self.add_blobs(inputs)
+        #self.add_blobs(inputs)
+
+        layer_name=self.add_layer(name='input')
+        top_blobs=self.add_blobs(inputs,name='blob')
+        layer=caffe_net.Layer_param(name=layer_name,type='Input',
+                                    top=top_blobs)
+        layer.input_param(inputs[0].shape)
+        log.cnet.add_layer(layer)
+
     def add_layer(self,name='layer'):
         if name in self.layers:
             return self.layers[name]
@@ -776,8 +784,8 @@ def trans_net(net,input_var,name='TransferedPytorchModel'):
     print('Starting Transform, This will take a while')
     log.init([input_var])
     log.cnet.net.name=name
-    log.cnet.net.input.extend([log.blobs(input_var)])
-    log.cnet.net.input_dim.extend(input_var.size())
+    #log.cnet.net.input.extend([log.blobs(input_var)])
+    #log.cnet.net.input_dim.extend(input_var.size())
     global NET_INITTED
     NET_INITTED=True
     for name,layer in net.named_modules():

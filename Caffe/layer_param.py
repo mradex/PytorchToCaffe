@@ -32,6 +32,18 @@ class Layer_param():
         self.bottom=self.param.bottom
         self.bottom.extend(bottom)
 
+    def input_param(self, input_dims):
+        if self.type != 'Input':
+            raise TypeError('the layer type must be Input if you want set input param')
+        
+        input_param = pb.InputParameter()
+        shape = input_param.shape.add()
+        
+        for d in input_dims:
+                shape.dim.append(d)
+        self.param.input_param.CopyFrom(input_param)
+
+
     def fc_param(self, num_output, weight_filler='xavier', bias_filler='constant',has_bias=True):
         if self.type != 'InnerProduct':
             raise TypeError('the layer type must be InnerProduct if you want set fc param')
