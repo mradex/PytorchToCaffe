@@ -1,5 +1,6 @@
 import torch
 import torch.nn as nn
+import numpy as np
 
 class SimpleConvLayer(nn.Module):
     def __init__(self):
@@ -19,4 +20,6 @@ output = model(input_tensor)
 print("Output shape:", output.shape)
 print(output)
 
+torch.save(input_tensor, "input.pth")
+np.save("input.npy", input_tensor.numpy())
 torch.save(model.state_dict(), "convlayer.pth")

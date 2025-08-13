@@ -10,7 +10,8 @@ net = caffe.Net('convlayer.prototxt', 'convlayer.caffemodel', caffe.TEST)
 print(net.blobs.keys())
 
 # Prepare input (same shape as during training)
-input_data = np.ones((1, 1, 4, 4), dtype=np.float32)
+#input_data = np.ones((1, 3, 4, 4), dtype=np.float32)
+input_data = np.load("input.npy")
 
 # Assign input to Caffe net
 net.blobs['blob1'].data[...] = input_data

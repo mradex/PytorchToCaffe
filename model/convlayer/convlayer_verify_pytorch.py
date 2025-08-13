@@ -7,7 +7,7 @@ if __name__=='__main__':
     net = SimpleConvLayer()
     net.load_state_dict(torch.load("convlayer.pth"))
     
-    input=torch.ones([1,3,4,4])
+    input=torch.load("input.pth")
     output = net(input)
     print("Output shape:", output.shape)
     print(output)
