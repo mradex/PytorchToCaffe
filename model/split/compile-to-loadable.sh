@@ -1,0 +1,1 @@
+/home/liujian/work/nvdla/sw/umd/out/apps/compiler/nvdla_compiler/nvdla_compiler --configtarget nv_full --cprecision fp16 --informat nchw --prototxt model.prototxt --caffemodel model.caffemodel 2>&1 | tee output
